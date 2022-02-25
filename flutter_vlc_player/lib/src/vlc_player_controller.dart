@@ -86,6 +86,24 @@ class VlcPlayerController extends ValueNotifier<VlcPlayerValue> {
         _onRendererHandler = onRendererHandler,
         super(VlcPlayerValue(duration: Duration.zero));
 
+  /// Constructs a [VlcPlayerController] playing a video from a file path.
+  VlcPlayerController.filePath(
+      String path, {
+        this.autoInitialize = true,
+        this.hwAcc = HwAcc.auto,
+        this.autoPlay = true,
+        this.options,
+        @Deprecated('Please, use the addOnInitListener method instead.')
+        VoidCallback? onInit,
+        @Deprecated('Please, use the addOnRendererEventListener method instead.')
+        RendererCallback? onRendererHandler,
+      })  : dataSource = path,
+        package = null,
+        _dataSourceType = DataSourceType.file,
+        _onInit = onInit,
+        _onRendererHandler = onRendererHandler,
+        super(VlcPlayerValue(duration: Duration.zero));
+
   /// The URI to the video file. This will be in different formats depending on
   /// the [DataSourceType] of the original video.
   final String dataSource;
